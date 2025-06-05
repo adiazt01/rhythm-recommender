@@ -1,0 +1,16 @@
+services:
+  db:
+    image: cassandra:latest
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=RhythmRecommenderCluster
+    volumes:
+      - cassandra-data:/var/lib/cassandra
+      - ./src/db/migrations:/migrations
+      - ./src/db/seeds:/seeds
+    restart: always
+
+volumes:
+  cassandra-data:
+    driver: local

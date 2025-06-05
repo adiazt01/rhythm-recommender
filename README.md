@@ -8,7 +8,7 @@ Sistema de recomendación musical tipo CLI, inspirado en Spotify, con análisis 
 
 ### 1. Clona el repositorio
 ```bash
-git clone <tu-repo>
+git clone https://github.com/adiazt01/rhythm-recommender.git
 cd rhythm-recommender
 ```
 

@@ -43,8 +43,13 @@ Variables principales:
 
 ### 4. Levanta Cassandra con Docker
 ```bash
+docker compose up -d
+```
+o si prefieres usar Docker Compose directamente:
+```bash
 docker-compose up -d
 ```
+
 Esto creará un contenedor con Cassandra y los volúmenes necesarios.
 
 ### 5. Ejecuta migraciones y seed de datos

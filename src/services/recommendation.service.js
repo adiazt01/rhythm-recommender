@@ -6,16 +6,16 @@ import { createSpinner } from "nanospinner";
 export async function findAllRecommendationsByUserId(userId) {
     const spinner = createSpinner("Buscando recomendaciones...").start();
     
-    const userRes = await executeQuery(
+    const usersFound = await executeQuery(
         `SELECT city FROM users WHERE user_id = ${userId}`,
     );
 
-    if (!userRes.rows.length) {
+    if (!usersFound.rows.length) {
         spinner.error({ text: "Usuario no encontrado" });
         return;
     }
 
-    const ciudad = userRes.rows[0].city;
+    const ciudad = usersFound.rows[0].city;
 
     await paginate(
         `SELECT title, artist, genre, total_listens FROM recommendations_by_city WHERE city = '${ciudad}' LIMIT 100`,

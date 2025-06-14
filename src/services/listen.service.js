@@ -21,7 +21,9 @@ export async function findAllListensByCityAndMonth() {
     const spinner = createSpinner(
         "Consultando escuchas por ciudad y mes...",
     ).start();
+    
     spinner.success({ text: "Consulta iniciada" });
+
     await paginate(
         'SELECT city, month, total_listens FROM listens_by_city_month ALLOW FILTERING;',
         ["Ciudad", "Mes", "Escuchas"],

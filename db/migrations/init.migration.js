@@ -19,7 +19,6 @@ async function migrate() {
     genre text
   )`);
 
-	// Create table of listens
 	await executeQuery(`CREATE TABLE IF NOT EXISTS listens (
     user_id int,
     song_id int,
@@ -27,7 +26,6 @@ async function migrate() {
     PRIMARY KEY ((user_id), listen_date, song_id)
   ) WITH CLUSTERING ORDER BY (listen_date DESC, song_id ASC)`);
 
-	// OLAP table: listens by genre and month
 	await executeQuery(`CREATE TABLE IF NOT EXISTS listens_by_genre_month (
     genre text,
     month text,
@@ -35,7 +33,6 @@ async function migrate() {
     PRIMARY KEY (genre, month)
   )`);
 
-	// OLAP table: listens by city and month
 	await executeQuery(`CREATE TABLE IF NOT EXISTS listens_by_city_month (
     city text,
     month text,
@@ -43,7 +40,6 @@ async function migrate() {
     PRIMARY KEY (city, month)
   )`);
 
-	// OLAP table: recommendations by city
 	await executeQuery('DROP TABLE IF EXISTS recommendations_by_city');
 	await executeQuery(`CREATE TABLE IF NOT EXISTS recommendations_by_city (
     city text,

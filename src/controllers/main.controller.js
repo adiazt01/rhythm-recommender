@@ -36,12 +36,12 @@ export async function menuOLAP() {
 
   } else if (consulta === "Escuchas por ciudad y mes") {
     await findAllListensByCityAndMonth();
-    
   }
 }
 
 export async function main() {
   await bienvenida();
+
   const { opcion } = await inquirer.prompt([
     {
       type: "list",
@@ -50,7 +50,7 @@ export async function main() {
       choices: [
         { name: chalk.bold('👤 ') + chalk.whiteBright('Explorar usuarios'), value: 'Ver usuarios' },
         { name: chalk.bold('🎶 ') + chalk.hex('#1DB954')('Descubrir canciones'), value: 'Ver canciones' },
-        { name: chalk.bold('💡 ') + chalk.yellow('Recomendaciones personalizadas'), value: 'Recomendar canciones a un usuario' },
+        { name: chalk.bold('💡 ') + chalk.yellow('Recomendacion por zona'), value: 'Recomendacion por zona' },
         { name: chalk.bold('📊 ') + chalk.cyan('Estadísticas OLAP'), value: 'Consultas OLAP' },
         { name: chalk.bold('🚪 ') + chalk.gray('Salir de Rhythm Recommender'), value: 'Salir' },
       ],
@@ -65,7 +65,7 @@ export async function main() {
     case "Ver canciones":
       await findAllMusic();
       break;
-    case "Recomendar canciones a un usuario": {
+    case "Recomendacion por zona": {
       await findAllUsersWithRecommendations();
       break;
     }
@@ -76,6 +76,7 @@ export async function main() {
       console.log(chalk.green("\n¡Hasta luego!\n"));
       process.exit(0);
   }
+  
   await pausa();
   await main();
 }

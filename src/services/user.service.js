@@ -9,10 +9,12 @@ export async function findAllUsers() {
 
 export async function findAllUsersWithPrompt(onSelectUser) {
   const usuariosRes = await executeQuery("SELECT user_id, name, city FROM users");
+  
   if (!usuariosRes.rows.length) {
     printError("No hay usuarios disponibles.");
     return;
   }
+  
   const selectedUser = await paginatedPrompt(
     usuariosRes.rows,
     u => `${u.name} (${u.city}) [ID: ${u.user_id}]`,
